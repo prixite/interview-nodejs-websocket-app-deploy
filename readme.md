@@ -30,6 +30,11 @@ The purpose of this test is to evaluate your ability to:
 
 ### Installation
 
+0. Copy env file:
+   ```sh
+   cp env.sample .env
+   ```
+
 1. Install dependencies:
    ```sh
    npm install
