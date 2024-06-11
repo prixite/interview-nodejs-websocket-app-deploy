@@ -1,8 +1,8 @@
 version: 0.0
-os: ubuntu
+os: linux
 files:
   - source: /
-    destination: /var/www/
+    destination: /home/ubuntu
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
