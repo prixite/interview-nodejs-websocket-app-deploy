@@ -1,4 +1,4 @@
 #!/bin/bash
-cd /var/www
+cd /home/ubuntu
 
 npm start

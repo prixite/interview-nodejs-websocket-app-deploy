@@ -1,5 +1,4 @@
 #!/bin/bash
-cd /var/www
+cd /home/ubuntu
 sudo apt update
 sudo apt install nodejs
-sudo apt install npm
