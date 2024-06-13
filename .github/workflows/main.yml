@@ -1,0 +1,40 @@
+name: Docker Image CI/CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: pulling the latest code
+      run: |
+        git branch
+        git switch main
+        git pull
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.SECRET_ACCESS }}
+        aws-region: us-east-1
+
+    - name: building the docker image
+      run: |
+        pwd
+        docker build -t cicd-backend .
+        docker images
+
+    - name: push the image to ecr
+      run: |
+        docker tag cicd-backend:latest 119688269608.dkr.ecr.us-east-1.amazonaws.com/cicd-backend:latest
+        docker push 119688269608.dkr.ecr.us-east-1.amazonaws.com/cicd-backend:latest
+        
+        
+
+      
+            
+      
