@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
     - name: pulling the latest code
       run: |
         pwd
@@ -34,9 +37,3 @@ jobs:
       run: |
         docker tag cicd-backend:latest 119688269608.dkr.ecr.us-east-1.amazonaws.com/cicd-backend:latest
         docker push 119688269608.dkr.ecr.us-east-1.amazonaws.com/cicd-backend:latest
-        
-        
-
-      
-            
-      
