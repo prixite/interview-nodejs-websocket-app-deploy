@@ -34,5 +34,6 @@ jobs:
 
     - name: push the image to ecr
       run: |
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 119688269608.dkr.ecr.us-east-1.amazonaws.com
         docker tag cicd-backend:latest 119688269608.dkr.ecr.us-east-1.amazonaws.com/cicd-backend:latest
         docker push 119688269608.dkr.ecr.us-east-1.amazonaws.com/cicd-backend:latest
