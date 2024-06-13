@@ -12,7 +12,7 @@ jobs:
     - name: pulling the latest code
       run: |
         pwd
-        ll
+        ls -alsh
         git branch
         git switch main
         git pull
