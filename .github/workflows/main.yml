@@ -26,6 +26,10 @@ jobs:
         echo "AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS }}" >> $GITHUB_ENV
         echo "AWS_REGION=us-east-1" >> $GITHUB_ENV
 
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
     - name: building the docker image
       run: |
         pwd
@@ -34,6 +38,5 @@ jobs:
 
     - name: push the image to ecr
       run: |
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 119688269608.dkr.ecr.us-east-1.amazonaws.com
         docker tag cicd-backend:latest 119688269608.dkr.ecr.us-east-1.amazonaws.com/cicd-backend:latest
         docker push 119688269608.dkr.ecr.us-east-1.amazonaws.com/cicd-backend:latest
