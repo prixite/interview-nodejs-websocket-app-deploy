@@ -1,0 +1,42 @@
+name: Docker Image CI/CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: pulling the latest code
+      run: |
+        pwd
+        ls -alsh
+        git branch
+        git switch main
+        git pull
+
+    - name: Configure AWS credentials
+      run: |
+        echo "AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }}" >> $GITHUB_ENV
+        echo "AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS }}" >> $GITHUB_ENV
+        echo "AWS_REGION=us-east-1" >> $GITHUB_ENV
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: building the docker image
+      run: |
+        pwd
+        docker build -t cicd-backend .
+        docker images
+
+    - name: push the image to ecr
+      run: |
+        docker tag cicd-backend:latest 119688269608.dkr.ecr.us-east-1.amazonaws.com/cicd-backend:latest
+        docker push 119688269608.dkr.ecr.us-east-1.amazonaws.com/cicd-backend:latest
