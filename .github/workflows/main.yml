@@ -11,6 +11,7 @@ jobs:
     steps:
     - name: pulling the latest code
       run: |
+        pwd
         git branch
         git switch main
         git pull
