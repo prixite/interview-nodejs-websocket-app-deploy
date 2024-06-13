@@ -22,8 +22,8 @@ jobs:
 
     - name: Configure AWS credentials
       run: |
-        echo "AWS_ACCESS_KEY_ID=AKIARXXP2B4UASKPPU77" >> $GITHUB_ENV
-        echo "AWS_SECRET_ACCESS_KEY=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" >> $GITHUB_ENV
+        echo "AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }}" >> $GITHUB_ENV
+        echo "AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS }}" >> $GITHUB_ENV
         echo "AWS_REGION=us-east-1" >> $GITHUB_ENV
 
     - name: Login to Amazon ECR
